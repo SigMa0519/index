@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>V我50</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      font-family: "微软雅黑", sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      font-size: 5em;
+      margin: 0.2em;
+      color: #ff4444;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    p {
+      font-size: 1.5em;
+      margin: 0.5em;
+      color: #333;
+    }
+
+    .button {
+      background-color: #ff6f61;
+      color: white;
+      padding: 1em 2em;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+      margin-top: 1em;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #e94e3d;
+    }
+
+    /* 飘出特效文字 */
+    .floating {
+      position: absolute;
+      font-size: 2em;
+      color: #ff4444;
+      animation: floatUp 1s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
+    }
+  </style>
+</head>
+<body onclick="createFloatingText(event)">
+  <h1>💰V我50</h1>
+  <p>我不想解释了，懂的都懂。</p>
+  <button class="button" onclick="playSound(); alert('请加我微信：MmmZY-0519')">点我转账</button>
+
+  <audio id="cashSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_25cdee0b1b.mp3?filename=money-counter-01-18668.mp3"></audio>
+
+  <script>
+    function playSound() {
+      const sound = document.getElementById('cashSound');
+      sound.play();
+    }
+
+    function createFloatingText(e) {
+      const float = document.createElement('div');
+      float.className = 'floating';
+      float.style.left = `${e.clientX - 10}px`;
+      float.style.top = `${e.clientY - 20}px`;
+      float.textContent = '￥50';
+      document.body.appendChild(float);
+      setTimeout(() => document.body.removeChild(float), 1000);
+    }
+  </script>
+</body>
+</html>
